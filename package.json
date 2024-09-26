@@ -8,6 +8,10 @@
     "sass": "sass --watch src/scss:build/css",
     "hola": "gulp hola"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeIdro/Proyecto-Festival-de-Musica"
+  },
   "keywords": [
     "SASS",
     "NPM",
