@@ -1,5 +1,9 @@
 body {
-  background-color: rgb(17, 17, 17);
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
-/*# sourceMappingURL=app.css.map */
+h1 {
+  color: aqua;
+}
