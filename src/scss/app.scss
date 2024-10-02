@@ -1,10 +1,2 @@
-body {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    // font-weight: <weight>;
-    font-style: normal;
-}
-
-h1 {
-    color: aqua;
-}
+@forward 'base';
+@forward 'layout';

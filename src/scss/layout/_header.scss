@@ -1,0 +1,32 @@
+@use 'base/variables' as *;
+
+//
+
+.header {
+    background-color: $verde;
+
+    h1{
+        color: $blanco;
+        margin: 0;
+    }
+    .contenedor-header{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem;
+    }
+}
+
+.navegacion-principal {
+    display: flex;
+    gap: 2rem;
+
+    a {
+        color: $blanco;
+        font-size: 2.4rem;
+
+        &:hover { // & sirve para que hover de una con a en el css "a:hover"
+            color: $amarillo;
+        }
+    }
+}
