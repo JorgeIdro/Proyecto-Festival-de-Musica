@@ -10,7 +10,7 @@ const sass = gulpSass(dartSass); // para que gulSass utilice a dartSass
 
 export function css(done) {
     src('src/scss/app.scss') // para que lo encuentre el archivo sass
-        .pipe(sass()) // lo compila
+        .pipe(sass().on('error', sass.logError)) // lo compila y en caso de error nos avisa
         .pipe(dest('build/css')) // lo almacena en el css
 
     done(); // Avisa a gulp que ya termino la función
@@ -18,7 +18,8 @@ export function css(done) {
 
 //watch
 export function dev() { // no se le pasa done para que la función no se detenga y siga compilando el Sass
-    watch('src/scss/app.scss', css) // cada que haya cambios ejecuta la función css
+    watch('src/scss/**/*.scss', css) // cada que haya cambios ejecuta la función css
 }
+// ** : todos las carpetas // *.scss : todos los archivos .scss
 
 // Esto es lo mismo que "sass": "sass --watch src/scss:build/css", en el package.json
