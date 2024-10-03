@@ -1,4 +1,5 @@
 @use 'base/variables' as *;
+@use 'base/mixins' as m;
 
 //
 
@@ -6,20 +7,33 @@
     background-color: $verde;
 
     h1{
+        text-align: center;
         color: $blanco;
-        margin: 0;
+        margin-bottom: 2rem;
+        @include m.tablet{
+            margin: 0;
+        }
     }
     .contenedor-header{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
         padding: 1rem;
+        flex-direction: column;
+        @include m.tablet {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+        }
     }
 }
 
 .navegacion-principal {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 2rem;
+    @include m.tablet {
+        flex-direction: row;
+    }
 
     a {
         color: $blanco;
