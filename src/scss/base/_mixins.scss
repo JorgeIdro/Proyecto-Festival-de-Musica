@@ -20,3 +20,16 @@
         @content;
     }
 }
+
+@mixin contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+@mixin grid($columnas, $gap:3rem) { //ingresa el parámetro ingresado
+    // por default gap es 3rem en caso no se ingrese la cantidad
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr); // lo aplica
+    column-gap: $gap;
+}
