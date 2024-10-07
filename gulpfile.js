@@ -9,9 +9,10 @@ const sass = gulpSass(dartSass); // para que gulSass utilice a dartSass
 // .pipe son como tareas que le damos y se hagan en el orden que pongamos
 
 export function css(done) {
-    src('src/scss/app.scss') // para que lo encuentre el archivo sass
+    src('src/scss/app.scss', {sourcemaps: true}) // para que lo encuentre el archivo sass
+    // sourcemaps cuando revisamos en código css en el navegador nos dice en que archivo de SASS esta ubicado
         .pipe(sass().on('error', sass.logError)) // lo compila y en caso de error nos avisa
-        .pipe(dest('build/css')) // lo almacena en el css
+        .pipe(dest('build/css', {sourcemaps: '.'})) // lo almacena en el css y el map aparte
 
     done(); // Avisa a gulp que ya termino la función
 }
