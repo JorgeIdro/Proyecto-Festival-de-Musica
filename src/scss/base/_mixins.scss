@@ -31,7 +31,7 @@
     // por default gap es 3rem en caso no se ingrese la cantidad
     display: grid;
     grid-template-columns: repeat($columnas, 1fr); // lo aplica
-    column-gap: $gap;
+    gap: $gap;
 }
 
 @mixin resetear-lista {
