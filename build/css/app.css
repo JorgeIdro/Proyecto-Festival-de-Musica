@@ -379,10 +379,21 @@ body > section {
 .header {
   background-color: #4CB8B3;
 }
+@media (min-width: 1200px) {
+  .header.fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0.1rem 0.2rem 0.3rem #333;
+  }
+}
 .header h1 {
   text-align: center;
-  color: #FFFFFF;
   margin-bottom: 2rem;
+}
+.header h1 a {
+  color: #FFFFFF;
 }
 @media (min-width: 768px) {
   .header h1 {
@@ -417,7 +428,7 @@ body > section {
   color: #FFFFFF;
   font-size: 2.4rem;
 }
-.navegacion-principal a:hover {
+.navegacion-principal a:hover, .navegacion-principal a.active {
   color: #fdda00;
 }
 

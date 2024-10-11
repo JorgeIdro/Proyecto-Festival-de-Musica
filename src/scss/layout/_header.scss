@@ -6,10 +6,24 @@
 .header {
     background-color: $verde;
 
+    &.fixed {
+        @include m.desktop {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: .1rem .2rem .3rem #333;
+        }
+    }
+    
     h1{
         text-align: center;
-        color: $blanco;
         margin-bottom: 2rem;
+
+        a {
+            color: $blanco;
+        }
+        
         @include m.tablet{
             margin: 0;
         }
@@ -26,6 +40,7 @@
     }
 }
 
+
 .navegacion-principal {
     display: flex;
     flex-direction: column;
@@ -39,7 +54,7 @@
         color: $blanco;
         font-size: 2.4rem;
 
-        &:hover { // & sirve para que hover de una con a en el css "a:hover"
+        &:hover, &.active { // & sirve para que hover de una con a en el css "a:hover"
             color: $amarillo;
         }
     }
