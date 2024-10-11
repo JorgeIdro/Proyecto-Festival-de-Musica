@@ -1,0 +1,73 @@
+@use 'base/variables' as *;
+@use 'base/mixins' as m;
+
+.galeria {
+    @include m.contenedor;
+
+    &-imagenes {
+        @include m.grid(1, 2rem);
+        @include m.telefono{
+            @include m.grid(2, 2rem);
+        }
+        @include m.tablet{
+            @include m.grid(3, 2rem);
+        }
+        @include m.desktop{
+            @include m.grid(4, 2rem);
+        }
+        img {
+            height: 20rem;
+            object-fit: cover;// fuerza la imagen a tener el tamaño del contenedor
+        }
+    }
+}
+
+.modal {
+    position: fixed; // el elemento queda fijo en la pantalla
+    inset: 0; // cubre toda la pantalla
+    background-color: rgba($negro, 0.5);
+    display: grid;
+    place-items: center; //centra la imagen horizontal y verticalmente
+
+    animation: fadeIn ease-in .5s;
+
+    &.fadeOut { // en el CSS aparecen juntos
+        animation: fadeOut ease-in .5s;
+    }
+
+    img {
+        max-width: 90rem;
+    }
+}
+
+// En caso de tener un botón de X para las imagenes
+.btn-cerrar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: $blanco;
+    border: none;
+    color: $negro;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
