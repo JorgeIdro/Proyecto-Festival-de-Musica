@@ -1,6 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() { // Se activa cuando la pagina se carga
+    navegacionFija();
     crearGaleria();
+    resaltaEnlace();
+    scrollNav();
 })
+
+function navegacionFija() {
+    const header = document.querySelector('.header');
+    const sobreFestival = document.querySelector('.sobre-festival');
+    const lineup = document.querySelector('.lineup');
+
+    window.addEventListener('scroll', function () {
+        //  getBoundingClientRect() nos refleja las coordenadas que tenga el elemento, si la coordenada bottom(abajo) es menor a 1 añadirá una clase al header, de otro modo lo eliminara
+        if (sobreFestival.getBoundingClientRect().bottom < 1) {
+            header.classList.add('fixed');
+        } else {
+            header.classList.remove('fixed');
+        }
+    })
+}
 
 function crearGaleria() {
     const galeria = document.querySelector('.galeria-imagenes')
@@ -55,4 +73,47 @@ function cerrarModal() {
         body.classList.remove('overflow-hidden'); // elimina la clase
     }, 450); // 0,45 s
     // si bien la animación es de .5s aquí e puse menos para que no reaparezca la imagen
+}
+
+function resaltaEnlace() {
+    document.addEventListener('scroll', function () {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.navegacion-principal a');
+        let actual = ''; // el valor ira cambiando cada vez que nos movamos de sección en la pagina
+
+        // con esto guardamos la sección que mas prepondera en la pantalla
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop; // Nos dice que tan separado(px) están los elementos del top de la caja padre(body)
+            const sectionHeight = section.clientHeight; // Nos dice la altura(px) de los elementos
+
+            // Con esta operación vemos que sección esta mas visible
+            if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
+                actual = section.id;
+            }
+        })
+
+        // aca detectamos cuan enlace tiene el mismo valor que "actual"
+        navLinks.forEach(link => {
+            link.classList.remove('active') // elimina la clase
+            //  get attribute : conseguir atributo
+            if(link.getAttribute('href') === '#' + actual){ // agrega la clase si se cumple la condición
+                link.classList.add('active'); // se le agrega la clase
+            }
+        })
+    })
+} 
+
+function scrollNav() {
+    const navLinks = document.querySelectorAll('.navegacion-principal a');
+
+    navLinks.forEach( link => {
+        link.addEventListener('click', e => {
+            e.preventDefault(); //evitamos evento por default
+            const sectionScroll = e.target.hash; // guardamos el id del enlace que hicimos click
+            const section = document.querySelector(sectionScroll); // guardamos la etiqueta del enlace que hicimos click
+
+            section.scrollIntoView({behavior: 'smooth'}); // Nos muestra la etiqueta que guardamos en section, ademas se agregarle la animación de scroll
+            console.log(section);
+        })
+    })
 }
