@@ -18,6 +18,10 @@ body {
     font-style: normal;
     color: $negro;
     font-size: 2rem;
+
+    &.overflow-hidden { // salen juntos en el CSS
+        overflow: hidden;
+    }
 }
 p {
     color: $negro;
