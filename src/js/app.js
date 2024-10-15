@@ -25,8 +25,11 @@ function crearGaleria() {
 
     for(let i = 1; i <= 16; i++) {
         const imagen = document.createElement('IMG');
+        imagen.loading = 'lazy'; // para que las imagenes se carguen cuando se requiera
+        imagen.width = '300';
+        imagen.height = '200';
         // por convención al momento de crear una etiqueta debe ir en mayúsculas
-        imagen.src = `src/img/gallery/full/${i}.jpg`;
+        imagen.src = `src/img/gallery/thumb/${i}.jpg`;
         imagen.alt = 'Imagen Galeria';
 
         // Evento handler
