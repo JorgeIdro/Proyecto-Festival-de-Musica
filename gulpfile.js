@@ -108,7 +108,7 @@ export function dev() { // no se le pasa done para que la función no se detenga
 // Esto es lo mismo que "sass": "sass --watch src/scss:build/css", en el package.json
 
 
-export default series(crop, js, css, imagenes, dev); // primero ejecuta js, luego css y por ultimo dev
+export default series(crop, js, css, imagenes, dev); // primero ejecuta crop, js, luego css y por ultimo dev
 // dev de ultimo porque esta tarea no debe finalizar
 
 // "parallel" es similar a "series" pero este ejecutara todas las tareas al mismo tiempo
