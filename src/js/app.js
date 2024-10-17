@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() { // Se activa cuando l
 function navegacionFija() {
     const header = document.querySelector('.header');
     const sobreFestival = document.querySelector('.sobre-festival');
-    const lineup = document.querySelector('.lineup');
 
     window.addEventListener('scroll', function () {
         //  getBoundingClientRect() nos refleja las coordenadas que tenga el elemento, si la coordenada bottom(abajo) es menor a 1 añadirá una clase al header, de otro modo lo eliminara
@@ -24,13 +23,13 @@ function crearGaleria() {
     const galeria = document.querySelector('.galeria-imagenes')
 
     for(let i = 1; i <= 16; i++) {
-        const imagen = document.createElement('IMG');
-        imagen.loading = 'lazy'; // para que las imagenes se carguen cuando se requiera
-        imagen.width = '300';
-        imagen.height = '200';
         // por convención al momento de crear una etiqueta debe ir en mayúsculas
-        imagen.src = `src/img/gallery/thumb/${i}.jpg`;
-        imagen.alt = 'Imagen Galeria';
+        const imagen = document.createElement('PICTURE');
+        imagen.innerHTML = `
+        <source srcset="build/img/gallery/thumb/${i}.avif" type="image/avif">
+        <source srcset="build/img/gallery/thumb/${i}.webp" type="image/webp">
+        <img loading="lazy" width="200" height="300" src="build/img/gallery/thumb/${i}.jpg" alt="imagen galeria">
+        `;
 
         // Evento handler
         imagen.onclick = function () { // se ejecuta cuando el usuario da click en la imagen
@@ -42,9 +41,12 @@ function crearGaleria() {
 }
 
 function mostrarImagen(i) {
-    const imagen = document.createElement('IMG');   
-    imagen.src = `src/img/gallery/full/${i}.jpg`;
-    imagen.alt = 'Imagen Galeria';
+    const imagen = document.createElement('PICTURE');
+    imagen.innerHTML = `
+    <source srcset="build/img/gallery/full/${i}.avif" type="image/avif">
+    <source srcset="build/img/gallery/full/${i}.webp" type="image/webp">
+    <img loading="lazy" width="200" height="300" src="build/img/gallery/full/${i}.jpg" alt="imagen galeria">
+    `;
     
     //Generar Modal
     const modal = document.createElement('DIV');
@@ -68,10 +70,10 @@ function mostrarImagen(i) {
 
 function cerrarModal() {
     const modal = document.querySelector('.modal');
-    modal.classList.add('fadeOut')
+    modal.classList.add('fadeOut');
 
     setTimeout(() => {
-        modal?.remove(); // consulta si existe la clase modal, si loc encuentra entonces lo elimina
+        modal?.remove(); // consulta si existe la clase modal, si lo encuentra entonces lo elimina
         const body = document.querySelector('body');
         body.classList.remove('overflow-hidden'); // elimina la clase
     }, 450); // 0,45 s
